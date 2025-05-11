@@ -2,43 +2,47 @@ package count_diff_bits
 
 import "testing"
 
-func TestCountNumberOfDifferentBitsCase1(t *testing.T) {
-	var a [32]byte = [32]byte{0x01, 0x02}
-	var b [32]byte = [32]byte{0x01, 0x02}
-
-	var result int = CountDifferentBits(a, b)
-	if result != 0 {
-		t.Error("CountDifferentBits failed")
+func TestCountDifferentBits(t *testing.T) {
+	testCases := []struct {
+		name     string
+		a        [32]byte
+		b        [32]byte
+		expected int
+	}{
+		{
+			name:     "Identical inputs",
+			a:        [32]byte{0x01, 0x02},
+			b:        [32]byte{0x01, 0x02},
+			expected: 0,
+		},
+		{
+			name:     "Two bits difference",
+			a:        [32]byte{0x01, 0x02},
+			b:        [32]byte{0x01, 0x01},
+			expected: 2,
+		},
+		{
+			name:     "Five bits difference",
+			a:        [32]byte{0x01, 0x02, 0x11},
+			b:        [32]byte{0x01, 0x01, 0x38},
+			expected: 5,
+		},
+		{
+			name:     "11 bits difference",
+			a:        [32]byte{0x01, 0x02, 0x11, 0xFa, 0xeb},
+			b:        [32]byte{0x01, 0x01, 0x38, 0xFa, 0x1e},
+			expected: 11,
+		},
 	}
-}
 
-func TestCountNumberOfDifferentBitsCase2(t *testing.T) {
-	var a [32]byte = [32]byte{0x01, 0x02}
-	var b [32]byte = [32]byte{0x01, 0x01}
-
-	var result int = CountDifferentBits(a, b)
-	if result != 2 {
-		t.Error("CountDifferentBits failed")
-	}
-}
-
-func TestCountNumberOfDifferentBitsCase3(t *testing.T) {
-	var a [32]byte = [32]byte{0x01, 0x02, 0x11}
-	var b [32]byte = [32]byte{0x01, 0x01, 0x38}
-
-	var result int = CountDifferentBits(a, b)
-	if result != 5 {
-		t.Error("CountDifferentBits failed")
-	}
-}
-
-func TestCountNumberOfDifferentBitsCase4(t *testing.T) {
-	var a [32]byte = [32]byte{0x01, 0x02, 0x11, 0xFa, 0xeb}
-	var b [32]byte = [32]byte{0x01, 0x01, 0x38, 0xFa, 0x1e}
-
-	var result int = CountDifferentBits(a, b)
-	var expected int = 11
-	if result != expected {
-		t.Errorf("CountDifferentBits failed: got %d, want %d", result, expected)
+	for _, tc := range testCases {
+		t.Run(
+			tc.name, func(t *testing.T) {
+				result := CountDifferentBits(tc.a, tc.b)
+				if result != tc.expected {
+					t.Errorf("%s: got %d, want %d", tc.name, result, tc.expected)
+				}
+			},
+		)
 	}
 }

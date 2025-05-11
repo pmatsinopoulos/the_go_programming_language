@@ -1,4 +1,7 @@
-.PHONY: build clean
+.PHONY: build clean test
+
+test:
+	go test -v ./...
 
 build:
 	mkdir -p build
