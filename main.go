@@ -139,6 +139,20 @@ func main() {
 
 	var numberOfBitsSet int = popcount.PopCount(aUint64)
 	fmt.Printf("Number of bits: %v\n", numberOfBitsSet)
+
+	months := [...]string{
+		1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June",
+		7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December",
+	}
+	fmt.Printf("length of months: %d, First month: %s\n", len(months), months[1])
+
+	slice1 := months[2:6]
+	for _, v := range slice1 {
+		fmt.Printf("%v\n", v)
+	}
+	fmt.Printf("Length of slice1 = %d, capacity of slice1 = %d\n", len(slice1), cap(slice1))
+	slice2 := slice1[:6]
+	fmt.Printf("slice2[5] = %s\n", slice2[5])
 }
 
 func doSomething(a [3]int) {
