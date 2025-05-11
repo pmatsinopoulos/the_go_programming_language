@@ -39,7 +39,7 @@ func TestCountDifferentBits(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(
 			tc.name, func(t *testing.T) {
-				result := count_diff_bits.CountDifferentBits(tc.a, tc.b)
+				result := count_diff_bits.CountDifferentBits(&tc.a, &tc.b)
 				if result != tc.expected {
 					t.Errorf("%s: got %d, want %d", tc.name, result, tc.expected)
 				}

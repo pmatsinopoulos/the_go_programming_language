@@ -128,7 +128,7 @@ func main() {
 	h := [32]byte(sha256.Sum256([]byte("x")))
 	i := [32]byte(sha256.Sum256([]byte("X")))
 
-	numberOfDifferentBits := count_diff_bits.CountDifferentBits(h, i)
+	numberOfDifferentBits := count_diff_bits.CountDifferentBits(&h, &i)
 	fmt.Printf("x = %b\nX = %b\n\tNumber of different bits = %v\n", h, i, numberOfDifferentBits)
 
 	pkg.FromA()
