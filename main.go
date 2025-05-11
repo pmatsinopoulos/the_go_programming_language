@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"math/rand"
+	"slices"
 	"the_go_programming_language/count_diff_bits"
 	"the_go_programming_language/pkg"
 	"the_go_programming_language/popcount"
@@ -153,6 +154,17 @@ func main() {
 	fmt.Printf("Length of slice1 = %d, capacity of slice1 = %d\n", len(slice1), cap(slice1))
 	slice2 := slice1[:6]
 	fmt.Printf("slice2[5] = %s\n", slice2[5])
+
+	slice3 := slices.Clone(slice2)
+	for _, v := range slice3 {
+		fmt.Printf("%v\n", v)
+	}
+
+	var runes []rune
+	for _, r := range "Hello, Πάνο" {
+		runes = append(runes, r)
+	}
+	fmt.Printf("%q\n", runes)
 }
 
 func doSomething(a [3]int) {
