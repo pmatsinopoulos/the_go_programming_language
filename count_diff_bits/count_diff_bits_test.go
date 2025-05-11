@@ -31,3 +31,14 @@ func TestCountNumberOfDifferentBitsCase3(t *testing.T) {
 		t.Error("CountDifferentBits failed")
 	}
 }
+
+func TestCountNumberOfDifferentBitsCase4(t *testing.T) {
+	var a [32]byte = [32]byte{0x01, 0x02, 0x11, 0xFa, 0xeb}
+	var b [32]byte = [32]byte{0x01, 0x01, 0x38, 0xFa, 0x1e}
+
+	var result int = CountDifferentBits(a, b)
+	var expected int = 11
+	if result != expected {
+		t.Errorf("CountDifferentBits failed: got %d, want %d", result, expected)
+	}
+}
